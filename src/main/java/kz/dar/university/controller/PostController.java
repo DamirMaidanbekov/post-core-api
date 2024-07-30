@@ -3,7 +3,7 @@ package kz.dar.university.controller;
 import java.util.List;
 import jakarta.validation.Valid;
 import kz.dar.university.model.PostModel;
-import kz.dar.university.service.PostService;
+import kz.dar.university.service.deprecated.PostServiceOld;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.http.HttpStatus;
@@ -17,11 +17,11 @@ public class PostController {
     Environment env;
 
     @Autowired
-    private PostService postService;
+    private PostServiceOld postServiceOld;
 
     @PostMapping
     public ResponseEntity<String> createPost(@Valid @RequestBody PostModel postModel){
-        postService.createPost(postModel);
+        postServiceOld.createPost(postModel);
         return new ResponseEntity<>("Принято!", HttpStatus.OK);
     }
 
@@ -32,23 +32,23 @@ public class PostController {
 
     @GetMapping("/all")
     public List<PostModel> getAllPosts(){
-        return postService.getAllPosts();
+        return postServiceOld.getAllPosts();
     }
 
     @GetMapping("/{postId}")
     public PostModel getPostById(@PathVariable String postId){
-        return postService.getPostById(postId);
+        return postServiceOld.getPostById(postId);
     }
 
     @PutMapping("/{postId}")
     public ResponseEntity<String> updatePostById(@PathVariable String postId, @Valid @RequestBody PostModel postModel){
-        postService.updatePostById(postId, postModel);
+        postServiceOld.updatePostById(postId, postModel);
         return new ResponseEntity<>("Изменено!", HttpStatus.OK);
     }
 
     @DeleteMapping("/{postId}")
     public ResponseEntity<String> deletePostById(@PathVariable String postId){
-        postService.deletePostById(postId);
+        postServiceOld.deletePostById(postId);
         return new ResponseEntity<>("Удалено!", HttpStatus.OK);
     }
 }

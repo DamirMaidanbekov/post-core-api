@@ -1,4 +1,4 @@
-package kz.dar.university.service;
+package kz.dar.university.service.deprecated;
 
 import kz.dar.university.model.PostModel;
 import org.springframework.stereotype.Service;
@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.UUID;
 
 @Service
-public class PostServiceImpl implements PostService{
+public class PostServiceOldImpl implements PostServiceOld {
     private static final HashMap<String, PostModel> postMap = new HashMap<>();
     static {
         PostModel postModel1 = new PostModel(UUID.randomUUID().toString(), UUID.randomUUID().toString(), UUID.randomUUID().toString(), "КоробкаА", "Доставлен");
